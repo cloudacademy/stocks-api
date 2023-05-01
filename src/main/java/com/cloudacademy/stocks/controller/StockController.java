@@ -86,7 +86,7 @@ public class StockController {
 
                 var csvPrinter = new CSVPrinter(
                         new PrintWriter(out),
-                        CSVFormat.DEFAULT
+                        CSVFormat.DEFAULT.withHeader(csvHeader)
                 );
         ) {
             for (var record : csvBody) {
