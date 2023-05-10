@@ -5,7 +5,7 @@ RUN apt-get update && \
 
 COPY src ./src
 COPY pom.xml .
-RUN mvn -B clean package spring-boot:repackage
+RUN mvn -B clean package spring-boot:repackage -DskipTests
 RUN tree
 
 FROM amazoncorretto:17-alpine3.17
