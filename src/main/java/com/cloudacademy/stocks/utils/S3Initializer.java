@@ -23,6 +23,10 @@ public class S3Initializer {
                 try {
                     if (!amazonS3.doesBucketExistV2(bucketName)) {
                         Bucket bucket = amazonS3.createBucket(bucketName);
+                        System.out.println("Bucket created: " + bucketName);
+                        break;
+                    } else {
+                        System.out.println("Bucket already exists: " + bucketName);
                         break;
                     }
                 } catch (AmazonS3Exception e) {
