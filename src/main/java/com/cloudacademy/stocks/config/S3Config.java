@@ -15,7 +15,6 @@ public class S3Config {
         return AmazonS3ClientBuilder.defaultClient();
     }
     
-    @Bean
     public S3Initializer s3Initializer(AmazonS3 amazonS3) {
         return new S3Initializer(amazonS3);
     }
