@@ -13,7 +13,7 @@ public class StockApi {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(StockApi.class, args);
         S3Initializer s3Initializer = context.getBean(S3Initializer.class);
-		String bucketName = context.getEnvironment().getProperty("aws.s3.bucket");
+		String bucketName = context.getEnvironment().getProperty("aws.s3.bucketName");
 		s3Initializer.init(bucketName);
 	}
 }
