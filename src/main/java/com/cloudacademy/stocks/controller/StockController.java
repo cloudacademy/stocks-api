@@ -52,6 +52,13 @@ public class StockController {
         return new ResponseEntity<>(stocks, HttpStatus.OK);
     }
 
+    // http://localhost:8080/api/stocks/ok
+    @CrossOrigin(origins = "*")
+    @GetMapping(value = "/ok", produces="text/plain")
+    public ResponseEntity<String> getOk() {
+        return new ResponseEntity<>("OK", HttpStatus.OK);
+    }
+
     // http://localhost:8080/api/stocks/csv
     @CrossOrigin(origins = "*")
     @GetMapping(value = "/csv", produces = "text/csv")
