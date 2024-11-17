@@ -1,18 +1,21 @@
-FROM openjdk:17-bullseye AS builder
+FROM maven:3.9.9-amazoncorretto-21-alpine AS builder
 
-RUN apt-get update && \
-    apt-get install -y build-essential maven tree
+WORKDIR /app
 
-COPY src ./src
-COPY pom.xml .
-RUN mvn -B clean package spring-boot:repackage
-RUN tree
+COPY ./pom.xml ./pom.xml
 
-FROM amazoncorretto:17-alpine3.17
+# fetch all dependencies
+RUN mvn dependency:go-offline -B
+
+COPY ./src ./src
+
+RUN mvn -B clean package spring-boot:repackage && tree
+
+FROM amazoncorretto:21-alpine3.20
 
 RUN mkdir -p /cloudacademy/app
 WORKDIR /cloudacademy/app
-COPY --from=builder target/stocks-*.jar ./stocks-api.jar
+COPY --from=builder /app/target/stocks-*.jar ./stocks-api.jar
 RUN chown -R 1001:1001 /cloudacademy/app && chmod -R 755 /cloudacademy/app
 
 USER 1001
