@@ -32,7 +32,7 @@ pipeline {
             agent any
             steps {
                 echo "triggering updatemanifestjob"
-                build job: 'ManifestUpdate', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
+                build job: 'ManifestUpdate', parameters: [string(name: 'DOCKERTAG', value: "r${env.BUILD_NUMBER}")]
             }
         }
     }
