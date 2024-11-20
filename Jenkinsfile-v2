@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = 'cloudacademydevops/stocks-api'
-        TAG = 'latest'
+        TAG = "r${env.BUILD_NUMBER}"
     }
 
     tools {
@@ -11,28 +11,28 @@ pipeline {
     }
 
     stages {
-        // stage('Docker Build') {
-        //     agent any
-        //     steps {
-        //         sh "docker build -t ${DOCKER_IMAGE}:r${env.BUILD_NUMBER} ."
-        //     }
-        // }
+        stage('Docker Build') {
+            agent any
+            steps {
+                sh "docker build -t ${DOCKER_IMAGE}:r${env.BUILD_NUMBER} ."
+            }
+        }
 
-        // stage('Docker Push') {
-        //     agent any
-        //     steps {
-        //         withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'dockerHubUser', passwordVariable: 'dockerHubPassword')]) {
-        //             sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-        //             sh "docker push ${DOCKER_IMAGE}:r${env.BUILD_NUMBER}"
-        //         }
-        //     }
-        // }
+        stage('Docker Push') {
+            agent any
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'dockerHubUser', passwordVariable: 'dockerHubPassword')]) {
+                    sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+                    sh "docker push ${DOCKER_IMAGE}:${TAG}"
+                }
+            }
+        }
         
         stage('Manifest Update') {
             agent any
             steps {
                 echo "triggering updatemanifestjob"
-                build job: 'ManifestUpdate', parameters: [string(name: 'DOCKERTAG', value: "r${env.BUILD_NUMBER}")]
+                build job: 'ManifestUpdate', parameters: [string(name: 'DOCKERTAG', value: "${TAG}")]
             }
         }
     }
