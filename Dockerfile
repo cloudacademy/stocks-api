@@ -1,4 +1,4 @@
-FROM maven:3.9.9-amazoncorretto-21-alpine AS builder
+FROM maven:3.9.9-amazoncorretto-23-alpine AS builder
 
 WORKDIR /app
 
@@ -11,7 +11,7 @@ COPY ./src ./src
 
 RUN mvn -B clean package spring-boot:repackage && tree
 
-FROM amazoncorretto:21-alpine3.20
+FROM amazoncorretto:23-alpine3.21
 
 RUN mkdir -p /cloudacademy/app
 WORKDIR /cloudacademy/app
