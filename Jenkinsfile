@@ -16,14 +16,14 @@ pipeline {
 
     stages {
         stage('Docker Build') {
-            agent any
+            // agent any
             steps {
                 sh "docker build -t ${IMAGE}:${TAG} ."
             }
         }
 
         stage('Docker Push') {
-            agent any
+            // agent any
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'dockerHubUser', passwordVariable: 'dockerHubPassword')]) {
                     sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
@@ -33,7 +33,7 @@ pipeline {
         }
         
         stage('Manifest Update') {
-            agent any
+            // agent any
             steps {
                 echo "triggering update manifest job..."
                 build job: 'Update K8s Manifest File', parameters: [string(name: 'IMAGE', value: "${IMAGE}"), string(name: 'TAG', value: "${TAG}")]
