@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE = 'cloudacademydevops/stocks-api-jdemo'
-        TAG = "v1.0.${MINOR_OFFSET.toInteger() + env.BUILD_NUMBER.toInteger()}"
+        TAG = "v1.0.${env.BUILD_NUMBER}"
     }
 
     tools {
