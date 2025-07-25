@@ -21,4 +21,5 @@ RUN chown -R 1001:1001 /cloudacademy/app && chmod -R 755 /cloudacademy/app
 USER 1001
 EXPOSE 8080
 
-CMD ["java", "-jar", "stocks-api.jar"]
+# CMD ["java", "-jar", "stocks-api.jar"]
+CMD ["java", "--add-opens=java.base/java.nio=org.apache.arrow.memory.core,ALL-UNNAMED", "-jar", "stocks-api.jar"]

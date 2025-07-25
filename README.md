@@ -8,7 +8,7 @@ Microservices Stock Application API
 1. Build API container image:
 
     ```
-    docker build -t cloudacademydevops/stocks-api:v2 .
+    docker build --platform linux/amd64 -t cloudacademydevops/stocks-api:snowflake .
     ```
 
 ## Container Launch Instructions
