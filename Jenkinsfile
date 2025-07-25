@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        node {
+            label 'java'
+        }
+    }
 
     environment {
         IMAGE = 'cloudacademydevops/stocks-api-jdemo'
