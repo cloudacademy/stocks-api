@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        IMAGE = 'cloudacademydevops/stocks-api'
-        TAG = "v1.0.${env.BUILD_NUMBER}"
+        IMAGE = 'cloudacademydevops/stocks-api-jdemo'
+        TAG = "v1.0.${MINOR_OFFSET.toInteger() + env.BUILD_NUMBER.toInteger()}"
     }
 
     tools {
