@@ -1,17 +1,13 @@
 pipeline {
     agent {
         node {
-            label 'java'
+            label 'docker'
         }
     }
 
     environment {
         IMAGE = 'cloudacademydevops/stocks-api-jdemo'
         TAG = "v1.0.${env.BUILD_NUMBER}"
-    }
-
-    tools {
-        dockerTool 'docker-latest'
     }
 
     stages {
