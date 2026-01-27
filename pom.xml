@@ -5,41 +5,41 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.5</version>
+		<version>4.0.0</version>
 		<relativePath/>
 	</parent>
 
 	<groupId>com.cloudacademy</groupId>
 	<artifactId>stocks</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.8-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>${project.artifactId}</name>
 	<description>Stocks API</description>
 	<organization>
-		<name>QA</name>
-		<url>https://qa.com</url>
+		<name>CloudAcademy</name>
+		<url>https://cloudacademy.com</url>
 	</organization>
 
 	<developers>
 		<developer>
 		<name>Jeremy Cook</name>
-		<email>jeremy.cook@qa.com</email>
+		<email>jeremy.cook@cloudacademy.com</email>
 		<url>https://www.linkedin.com/in/jeremycook123/</url>
-		<organization>QA</organization>
-		<organizationUrl>https://qa.com</organizationUrl>
+		<organization>CloudAcademy</organization>
+		<organizationUrl>https://cloudacademy.com</organizationUrl>
 		<roles>
-			<role>Solutions Architect Director</role>
+			<role>Lead Content Architect</role>
 			<role>DevOps - Researcher and Trainer</role>
 		</roles>
 		</developer>
 	</developers>
 
 	<properties>
-		<java.version>21</java.version>
+		<java.version>25</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>21</maven.compiler.source>
-		<maven.compiler.target>21</maven.compiler.target>
+		<maven.compiler.source>25</maven.compiler.source>
+		<maven.compiler.target>25</maven.compiler.target>
 		<maven.compiler.testSource>${maven.compiler.source}</maven.compiler.testSource>
 		<maven.compiler.testTarget>${maven.compiler.testSource}</maven.compiler.testTarget>
 	</properties>
@@ -61,17 +61,12 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-csv</artifactId>
-			<version>1.12.0</version>
+			<version>1.10.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-			<version>2.5.0</version>
 		</dependency>
 	</dependencies>
 
@@ -80,15 +75,15 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>3.3.5</version>
 				<executions>
 					<execution>
 						<goals>
-							<goal>repackage</goal>
+							<goal>build-info</goal>
 						</goals>
 					</execution>
 				</executions>
 			</plugin>
 		</plugins>
 	</build>
+
 </project>
