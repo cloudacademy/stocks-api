@@ -1,6 +1,8 @@
-FROM maven:3.9.9-amazoncorretto-21-alpine AS builder
+FROM amazoncorretto:25 AS builder
 
 WORKDIR /app
+
+RUN yum install -y maven tree && yum clean all
 
 COPY ./pom.xml ./pom.xml
 
@@ -9,9 +11,9 @@ RUN mvn dependency:go-offline -B
 
 COPY ./src ./src
 
-RUN mvn -B clean package spring-boot:repackage && tree
+RUN mvn -B clean package spring-boot:repackage
 
-FROM amazoncorretto:21-alpine3.20
+FROM amazoncorretto:25-alpine
 
 RUN mkdir -p /cloudacademy/app
 WORKDIR /cloudacademy/app
